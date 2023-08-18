@@ -21,8 +21,14 @@ public class ProductService {
     }
 
     public Product getProduct(long id) {
-        return this.repository.findById(id)
-                .orElseThrow(
-                        () -> new EntityNotFoundException("Product not found"));
+        return this.repository
+                   .findById(id)
+                   .orElseThrow(
+                     () -> new EntityNotFoundException("Product not found")
+                   );
+    }
+
+    public void deleteProductById(long id) {
+        
     }
 }
