@@ -22,13 +22,17 @@ public class ProductService {
 
     public Product getProduct(long id) {
         return this.repository
-                   .findById(id)
-                   .orElseThrow(
-                     () -> new EntityNotFoundException("Product not found")
-                   );
+                .findById(id)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Product not found"));
     }
 
     public void deleteProductById(long id) {
-        
+
+        if (this.repository.existsById(id)) {
+            this.repository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Product not found");
+        }
     }
 }
